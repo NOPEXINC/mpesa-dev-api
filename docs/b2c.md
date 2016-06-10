@@ -9,24 +9,7 @@ _This document needs below approvals for implementation_
  Broker     | Service Access Gateway
  SP         | Service Provider
 
-# Introduction
-
-## Scope
-
- The present document specifies the real time B2C Web Service aspects
- of the interface. All aspects of B2C Web Service are defined here,
- these being:
-
-  - Message Flow Description
-
-  - Data Type Definition
-
-  - Web Service Interface Definition
-
-  - WSDL for this specification
-
-
-# Scope
+# Introduction >  Scope
 The present document specifies the real time B2C Web Service aspects of the interface. All aspects of B2C Web Service are defined here, these being:
 
  - Message Flow Description
@@ -706,17 +689,14 @@ message.
  requests expired, the 3^rd^ party must add a key-pair parameter into
  **ReferenceData** and the key is **QueueTimeoutURL**.
 
-#### 4.1.1.3 Output Message: ResponseMsg {#output-message-responsemsg .ListParagraph}
+#### Output Message: ResponseMsg {#output-message-responsemsg .ListParagraph}
 
   Element name   Element type   Optional   > Description
   -------------- -------------- ---------- -----------------------------------------------------------------------------------------------
   ResponseMsg    xsd: string    No         Response return to 3^rd^ party. Its value should be an instance of Response Type and a CDATA.
 
-**\
-**
 
 1.  Interface: ResultMgrPortType
-    ----------------------------
 
     1.  ### Operation: GenericAPIResult
 
@@ -725,19 +705,18 @@ message.
  It will be invoked by Broker to notify the 3^rd^ party once Broker
  received the notification from CoreAPI.
 
-#### 4.2.1.1 Input Message: ResultMsg {#input-message-resultmsg .ListParagraph}
+#### Input Message: ResultMsg {#input-message-resultmsg .ListParagraph}
 
   Element name   Element type   Optional   > Description
   -------------- -------------- ---------- -------------------------------------------------------------------------------------------
   ResultMsg      xsd: string    No         > Request Message from Broker. Its value should be a instance of Result Type and a CDATA.
 
-#### 4.2.1.2 Output Message: ResponseMsg {#output-message-responsemsg-1 .ListParagraph}
+#### Output Message: ResponseMsg {#output-message-responsemsg-1 .ListParagraph}
 
   Element name   Element type   Optional   > Description
-  -------------- -------------- ---------- -------------------------------------------------------------------------------------------
   ResponseMsg    xsd: string    No         > Response return to Broker. Its value should be a instance of Response Type and a CDATA.
 
-#### 4.2.1.3 Response Codes {#response-codes .ListParagraph}
+#### Response Codes {#response-codes .ListParagraph}
 
   > ResponseCode   > ResponseDesc
   ---------------- --------------------------
@@ -751,10 +730,8 @@ below:<span id="cps_wsr_10004_mMcCpPsS_d55e2500" class="anchor"></span>
 
 The **ResultParameters** will change to this on April 2015.
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Parameter                               Data Type   Mandatory or Optional   Description                                                                                                                                               Example
-  --------------------------------------- ----------- ----------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------
-  > TransactionReceipt                    xs:string   Mandatory               > Unique transaction ID for the payment transaction.                                                                                                      1234560000007031
+Parameter                               Data Type   Mandatory or Optional   Description                                                                                                                                               Example
+> TransactionReceipt                    xs:string   Mandatory               > Unique transaction ID for the payment transaction.                                                                                                      1234560000007031
 
   > TransactionAmount                     xs:string   Mandatory               > 2 fixed point decimal amount of the transaction                                                                                                         100.22
 
@@ -790,7 +767,6 @@ The **ResultParameters** will change to this on April 2015.
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 1.  Interface: QueueTimeoutNotificationPort
-    ---------------------------------------
 
     1.  ### Operation: notifyQueueTimeout
 
@@ -799,7 +775,7 @@ The **ResultParameters** will change to this on April 2015.
  It will be invoked by Broker to notify the 3^rd^ party once cached B2C
  requests are expired.
 
-#### 4.3.1.1 Input Message: notifyQueueTimeout {#input-message-notifyqueuetimeout .ListParagraph}
+#### Input Message: notifyQueueTimeout {#input-message-notifyqueuetimeout .ListParagraph}
 
   Element name               Element type   > Optional   Description
   -------------------------- -------------- ------------ ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -807,14 +783,14 @@ The **ResultParameters** will change to this on April 2015.
   originRequest              xsd:string     > No         Original request without SOAP Header sent by 3^rd^ party. Its value is encoded with base64, when the 3rd party receive the request, it should decode it.
   extensionInfo              Parameters     > Yes        Extended parameters.
 
-#### 4.3.1.2 Output Message: notifyQueueTimeoutResponse {#output-message-notifyqueuetimeoutresponse .ListParagraph}
+#### Output Message: notifyQueueTimeoutResponse {#output-message-notifyqueuetimeoutresponse .ListParagraph}
 
   > Element name    Element type   Optional   > Description
   ----------------- -------------- ---------- ------------------------
   > result          Result         No         
   > extensionInfo   Parameters     Yes        > Extended parameters.
 
-#### 4.3.1.3 Response Code {#response-code .ListParagraph}
+#### Response Code {#response-code .ListParagraph}
 
   > ResponseCode   > ResponseDesc
   ---------------- ----------------
@@ -822,18 +798,15 @@ The **ResultParameters** will change to this on April 2015.
   > 000000001      > Failed
 
 1.  Interface: QueryTransactionPort
-    -------------------------------
 
     1.  ### Operation: queryTransaction
 
  The 3^rd^ party invokes this operation to query transaction
  information..
 
-#### 4.3.1.1 Message Header: RequestSOAPHeader {#message-header-requestsoapheader-1 .ListParagraph}
+#### Message Header: RequestSOAPHeader {#message-header-requestsoapheader-1 .ListParagraph}
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Element name   Element type   Optional   Description
-  -------------- -------------- ---------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   spId           xsd: string    No         SP ID.
                                            
                                            It’s allocated by the Broker to the 3^rd^ party.
@@ -883,9 +856,8 @@ The **ResultParameters** will change to this on April 2015.
                                            \[Example\]
                                            
                                            20100731064245
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#### 4.3.1.2 Input Message: queryTransaction {#input-message-querytransaction .ListParagraph}
+#### Input Message: queryTransaction {#input-message-querytransaction .ListParagraph}
 
   Element name               Element type   Optional   Description
   -------------------------- -------------- ---------- -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -895,22 +867,18 @@ The **ResultParameters** will change to this on April 2015.
 1.  <span id="_Toc363722936" class="anchor"></span>extensionInfo
     > Description
 
-  ----------------------------------------------------------------------------------------------------------------------------------
   Parameter   Optional   Type         Description
-  ----------- ---------- ------------ ----------------------------------------------------------------------------------------------
   queryDate   Yes        String(20)   The date of the original conversation. Format is yyyyMMddHHmmss, for example: 20131230134412
                                       
                                       Note:
                                       
                                       If this parameter does not present, it will cost more time to get the result.
-  ----------------------------------------------------------------------------------------------------------------------------------
 
 ####  {#section .ListParagraph}
 
-#### 4.3.1.3 Output Message: queryTransactionResponse {#output-message-querytransactionresponse .ListParagraph}
+####  Output Message: queryTransactionResponse {#output-message-querytransactionresponse .ListParagraph}
 
   Element name            Element type                Optional   Description
-  ----------------------- --------------------------- ---------- ------------------------------------------------------------------------------------------------------------------
   result                  Response                    No         
   submitApiRequestList    xsd:string\[0-unbounded\]   Y          Requests sent by the 3^rd^ party. Its value is the requests sent by the 3^rd^ party with base64 encoded.
   submitApiResponseList   xsd:string\[0-unbounded\]   Y          Responses returned from the Broker. Its value is the responses returned from the Broker with base64 encoded.
@@ -920,14 +888,10 @@ The **ResultParameters** will change to this on April 2015.
 
 ####  {#section-1 .ListParagraph}
 
-**\
-**
 
-#### 4.3.1.4 Response Codes {#response-codes-1 .ListParagraph}
+####  Response Codes {#response-codes-1 .ListParagraph}
 
-  ---------------------------------------------------------
   > ResponseCode   > ResponseDesc
-  ---------------- ----------------------------------------
   > 000000000      > Success
 
   > 100000001      > The system is overload
@@ -953,10 +917,8 @@ The **ResultParameters** will change to this on April 2015.
   > 100000014      > Missing mandatory parameter:%1
                    >
                    > %1 indicates the parameter’s name.
-  ---------------------------------------------------------
 
 <span id="_Toc375904370" class="anchor"><span id="_Toc375904403" class="anchor"><span id="_Toc402255579" class="anchor"></span></span></span>4.5 Interface: Management {#interface-management .ListParagraph}
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### <span id="_Toc375904371" class="anchor"><span id="_Toc375904404" class="anchor"><span id="_Toc402255580" class="anchor"></span></span></span>4.5.1 Operation: changePassword {#operation-changepassword .ListParagraph}
 
@@ -1423,7 +1385,7 @@ successfully.</ResponseDesc><OriginatorConversationID>B2C-SIT-000005
 </soapenv:Envelope>
 ```
 
-#### Example2: Error response caused by authentication failed.
+# Example2: Error response caused by authentication failed.
 
 ```xml
 <soapenv:Envelope
@@ -1451,7 +1413,7 @@ xmlns="http://api-v1.gen.mm.vodafone.com/mminterface/response">
 </soapenv:Envelope>
 ```
 
-#### Example3: Error response caused by waiting for resending.
+# Example3: Error response caused by waiting for resending.
 
 ```xml
 <soapenv:Envelope
@@ -1686,7 +1648,7 @@ successfully.</ResultDesc>
 ```
 
 ### The 3rd party return response to the Broker
-#### Example1: Success response
+# Example1: Success response
 
 ```xml
 <soapenv:Envelope
@@ -1714,7 +1676,7 @@ xmlns="http://api-v1.gen.mm.vodafone.com/mminterface/response">
 </soapenv:Envelope>
 ```
 
-#### Example2: Error response
+# Example2: Error response
 
 ```xml
 <soapenv:Envelope
@@ -1855,7 +1817,7 @@ CiAgIDwvc29hcGVudjpCb2R5Pgo8L3NvYXBlbnY6RW52ZWxvcGU+Cg==</loc:originRequest>
 ```
 
 ### The 3rd party return response to the Broker
-#### Example1: Success response
+# Example1: Success response
 
 ```xml
 <soapenv:Envelope
@@ -1884,7 +1846,7 @@ xmlns:res="http://api-v1.gen.mm.vodafone.com/mminterface/result">
 </soapenv:Envelope>
 ```
 
-#### Example2: Error response
+# Example2: Error response
 
 ```xml
 <soapenv:Envelope
@@ -1963,7 +1925,7 @@ xmlns:res="http://api-v1.gen.mm.vodafone.com/mminterface/result">
 ```
 
 ### The Broker return response to the 3rd party
-#### Example1: Success response
+# Example1: Success response
 
 ```xml
 <soapenv:Envelope
@@ -2016,7 +1978,7 @@ xmlns:ns3="http://api-v1.gen.mm.vodafone.com/mminterface/response">Success</ns3:
 </soapenv:Envelope>
 ```
 
-#### Example2: Error response
+# Example2: Error response
 
 ```xml
 <soapenv:Envelope
@@ -2047,7 +2009,7 @@ xmlns:res1="http://api-v1.gen.mm.vodafone.com/mminterface/result">
 ```
 
 ### changePassword
-#### Request example:
+# Request example:
 
 ```xml
 <soapenv:Envelope
@@ -2076,7 +2038,7 @@ xmlns:res="http://api-v1.gen.mm.vodafone.com/mminterface/result">
 </soapenv:Envelope>
 ```
 
-### Response example:
+#Response example:
 #### Example1: Success response
 
 ```xml
@@ -2107,7 +2069,7 @@ xmlns:res1="http://api-v1.gen.mm.vodafone.com/mminterface/result">
 </soapenv:Envelope>
 ```
 
-#### Example2: Error response caused by authentication failed.
+# Example2: Error response caused by authentication failed.
 
 ``` xml
   <soapenv:Envelope
