@@ -3,7 +3,6 @@ pages:
 - Home:    index.md
 - About:   about.md
 - Business To Customer:     b2c.md
-- Message Flow:     message_flow.md
 - Customer To Business:     c2b.md
 - Payments:     payments.md
 - Transaction:     transaction.md
